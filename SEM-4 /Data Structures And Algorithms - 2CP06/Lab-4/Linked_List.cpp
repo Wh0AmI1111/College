@@ -119,6 +119,37 @@ public:
 		cout << "> Node is inserted at " << pos << "..."<< endl; 
 	}
 
+	// Remove Element From Position
+	void remove_From_position (int pos) {
+		if (pos > cntNode() || pos < 0) {
+			cerr << "> Invalid Value Of Index/Position ???" << endl;
+			return;
+		}
+
+		if (pos == 0) {
+			Node* delte = head;
+			head = head->next;
+			delete delte;
+		} else {
+			int cnt = 0;
+			Node* nextnode = head;
+
+			while (nextnode != NULL) {
+				if (++cnt == pos) {
+					cout << "Found Element..." << endl;
+					break;
+				}
+				nextnode = nextnode->next;
+			}
+
+			Node* temp = nextnode->next;
+			nextnode->next = nextnode->next->next;
+			delete temp;
+			return; 
+		}
+
+		cout << "Element Not Found !!!" << endl;
+	}
 
 };
 
