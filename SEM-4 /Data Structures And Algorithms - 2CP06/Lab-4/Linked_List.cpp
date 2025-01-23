@@ -116,7 +116,7 @@ public:
 			Newnode->next = nextnode->next;
 			nextnode->next = Newnode;
 		}
-		cout << "> Node is inserted at " << pos << "..."<< endl; 
+		cout << "> Node is inserted at " << pos << "..." << endl;
 	}
 
 	// Remove Element From Position
@@ -131,21 +131,25 @@ public:
 			head = head->next;
 			delete delte;
 		} else {
+			bool found = false;
 			int cnt = 0;
 			Node* nextnode = head;
 
 			while (nextnode != NULL) {
 				if (++cnt == pos) {
 					cout << "Found Element..." << endl;
+					found = true;
 					break;
 				}
 				nextnode = nextnode->next;
 			}
+			if (found) {
+				Node* temp = nextnode->next;
+				nextnode->next = nextnode->next->next;
+				delete temp;
+				return;
+			}
 
-			Node* temp = nextnode->next;
-			nextnode->next = nextnode->next->next;
-			delete temp;
-			return; 
 		}
 
 		cout << "Element Not Found !!!" << endl;
