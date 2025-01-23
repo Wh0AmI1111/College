@@ -131,28 +131,23 @@ public:
 			head = head->next;
 			delete delte;
 		} else {
-			bool found = false;
 			int cnt = 0;
 			Node* nextnode = head;
 
 			while (nextnode != NULL) {
-				if (++cnt == pos) {
-					cout << "Found Element..." << endl;
-					found = true;
+				if (++cnt == pos - 1) {
 					break;
 				}
 				nextnode = nextnode->next;
 			}
-			if (found) {
-				Node* temp = nextnode->next;
-				nextnode->next = nextnode->next->next;
-				delete temp;
-				return;
-			}
+
+			Node* temp = nextnode->next;
+			nextnode->next = nextnode->next->next;
+			delete temp;
+
+			cout << "Element Remove From " << pos << " Successfully..." << endl;
 
 		}
-
-		cout << "Element Not Found !!!" << endl;
 	}
 
 };
@@ -173,6 +168,16 @@ int main () {
 	L1.insert_at_position(L1.cntNode(), 07);
 
 	cout << "> Number Of Nodes : " << L1.cntNode() << endl;
+
+	L1.display();
+
+	L1.remove_From_position(0);
+	L1.display();
+
+	L1.remove_From_position(3);
+	L1.display();
+
+	L1.remove_From_position(4);
 
 	L1.display();
 
